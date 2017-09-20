@@ -17,15 +17,6 @@ landcover = r'\\CCSVR01\NorthWalk\LandCover\BaywideDataset_12Classes\BaywideData
 huc12_looper = r'\\Ccsvr01\d\GIS\Envision_the_Susquehanna_NFWF\_Data\Susquehanna_HUC12.shp'
 huc12_selection = arcpy.MakeFeatureLayer_management(huc12_looper, "huc12_selection")
 
-## Grab the actual layer object so we can get the extent to limit the processing
-## I tried to use .getSelectedExtent() on the huc12_selection variable I created, 
-## but it's a Result object, not a Layer ovject, so it doesn't have that method
-mxd = arcpy.mapping.MapDocument(r'\\Ccsvr01\d\GIS\Envision_the_Susquehanna_NFWF\Analysis\Chop_LC_Flowpaths\ChopLC.mxd')
-df = arcpy.mapping.ListDataFrames(mxd)[0]
-for layer in arcpy.mapping.ListLayers(mxd, '', df):
-    if layer.name == 'huc12_selection':
-        hucs = layer
-
 ## Set environments
 arcpy.env.cellSize = 1
 arcpy.env.snapRaster = landcover
