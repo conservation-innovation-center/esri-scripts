@@ -7,6 +7,12 @@
 ##Emily Mills 9/20/17
 
 
+##throughout this script you'll see one or more "%s" followed by "% ()"
+#this is a nice shortcut for string formatting.
+# see further documentation at the link below, which includes all kinds of good python formatting tips
+# not limited to strings:
+#https://pyformat.info/
+
 ## Import modules
 import arcpy
 from arcpy import env
