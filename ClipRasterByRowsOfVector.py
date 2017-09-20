@@ -23,6 +23,7 @@ arcpy.env.snapRaster = landcover
 arcpy.env.compression = 'LZ77'
 
 ## Loop through HUC12s
+## This is the new style, a little funky but more efficient (http://pro.arcgis.com/en/pro-app/arcpy/data-access/searchcursor-class.htm)
 with arcpy.da.SearchCursor(huc12_looper, ['HUC12']) as cursor:
     for row in cursor:
 
