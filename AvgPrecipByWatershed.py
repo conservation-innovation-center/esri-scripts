@@ -6,6 +6,13 @@ October 12, 2017
 This script loops through a directory of precipitation rasters, calculates zonal statistics (mean)
 of watersheds in a shapefile, then appends that information to the shapefile.
 
+Important note: This is meant to be used within an ArcGIS Toolbox, with appropriate parameters setup:
+
+1. Precipitation Raster Folder (Type: Folder)
+2. Effective watersheds (Type: Feature Layer) <-- Using 'Feature Layer' allows us to drag and drop from table of contents
+3. Zone field (Type: Field) <-- If you setup the 'Obtained from' property to be the 'Effective watersheds', it can pre-populate this as a drop down
+4. Raster for snapping (Type: Raster Layer) <-- ditto #2
+
 """
 ## Start timer
 import os, sys, timeit
