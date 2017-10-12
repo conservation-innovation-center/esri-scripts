@@ -43,6 +43,7 @@ start = timeit.default_timer()
 
 def main():
     ## Packages
+    ## Find out mor about try/except blocks here: https://stackoverflow.com/questions/730764/try-except-in-python-how-do-you-properly-ignore-exceptions
     try:
         import arcpy
         import pandas
@@ -52,7 +53,7 @@ def main():
         arcpy.AddMessage('Could not import necessary libraries')
         sys.exit()
 
-    ## Extentsions
+    ## Extensions
     arcpy.CheckOutExtension("spatial")
 
     ## Parameters
@@ -85,6 +86,7 @@ def main():
         arcpy.AddMessage('Starting: {0}'.format(month)) ## Weird format, but very handy. Find out more here: https://pyformat.info/
 
         ## Zonal statistics (mean) on watersheds; output is an in_memory table
+        ## Find out more about in_memory here: https://gis.stackexchange.com/questions/35468/what-is-the-proper-syntax-and-usage-for-arcgis-in-memory-workspace
         arcpy.AddMessage('Calculating zonal statistics')
         precipTable = arcpy.sa.ZonalStatisticsAsTable(watersheds, zoneField, raster, 'in_memory/myNewTable', 'DATA', 'MEAN')
 
