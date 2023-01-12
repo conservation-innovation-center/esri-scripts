@@ -1,0 +1,2 @@
+# esri-scripts
+This repository is a collection of scripts written within the ESRI ecosystem that were deemed potentially useful for future projects. They are not necessarily designed as all-purpose applications or modules so care must be taken to review the script and determine if any changes should be made to use the script for a new project. Be sure to pay attention to file locations or other parameters that need to be changed to reflect the working environment.
