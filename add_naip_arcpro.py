@@ -19,15 +19,28 @@ naip_dictionaries = glob.glob("//chesconse-app01/k//GIS/CBP_Obj_1/Analysis/LCCAA
 latest_file = max(naip_dictionaries, key=os.path.getctime)
 
 with open(latest_file) as json_file:
-    NAIP = json.load(json_file)
+    layerData = json.load(json_file)
 
-def replace_map_layers(Map):
-    layers = Map.listLayers('NAIP*')
+def replace_map_layers(Map, pattern):
+    """Replace the layers on an arcpy.mp Map object matching given pattern
+    
+    Params
+    ---
+    Map: arcpy.mp.Map
+        map object holding layers to be replaced
+    pattern: str
+        regular expression to be matched against layer names
+    
+    Return
+    ---
+    None: updates the specified layers in the Map
+    """
+    layers = Map.listLayers(pattern)
     for layer in layers:
         name = layer.name
         state = name[5:-5]
         print(state)
-        subdict = NAIP[state]
+        subdict = layerData[state]
         Map.removeLayer(layer)
         newlayer = Map.addDataFromPath(subdict['T1url'])
         newlayer.name = name  
@@ -42,10 +55,10 @@ for path in projects:
     t2map = project.listMaps('T2 Map')[0]
  
     # replace map1 layers
-    replace_map_layers(t1map)
+    replace_map_layers(t1map, 'NAIP*')
     
     # replace map2 layers
-    replace_map_layers(t2map)
+    replace_map_layers(t2map, 'NAIP*')
 
     # save the project
     project.save()
